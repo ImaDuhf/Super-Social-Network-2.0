@@ -1,10 +1,3 @@
-import * as env from 'dotenv';
-env.config();
-
-if (process.env.JWT_SIGN_KEY == undefined) {
-	console.log('[WARN] - no jwt key found, perhaps you are missing the env file?');
-}
-
 import express from 'express';
 import apiRouter from './src/router/apiRouter.js';
 import authRouter from './src/router/authRouter.js';
