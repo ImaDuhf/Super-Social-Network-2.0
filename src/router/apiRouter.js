@@ -1,16 +1,16 @@
 import express from 'express';
 import { fetchMessages, sendMessage } from '../service/messageService.js';
 
-const router = express.Router();
+const apiRouter = express.Router();
 
-router.get('/getMessages', async (request, response) => {
+apiRouter.get('/getMessages', async (request, response) => {
 	const messageCollection = await fetchMessages();
 	console.log(messageCollection.map((msg) => msg.message));
 
 	response.send(messageCollection.map((msg) => msg.message));
 });
 
-router.put('/sendMessage', async (request, response) => {
+apiRouter.put('/sendMessage', async (request, response) => {
 	let message = request.body;
 	console.log(message);
 	const result = await sendMessage(message);
@@ -26,6 +26,6 @@ router.put('/sendMessage', async (request, response) => {
 	response.send(responseData);
 });
 
-router.delete('/deleteMessage', (request, response) => {});
+apiRouter.delete('/deleteMessage', (request, response) => {});
 
-export default router;
+export default apiRouter;
