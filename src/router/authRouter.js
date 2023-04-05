@@ -16,7 +16,7 @@ authRouter.post('/register', async (request, response) => {
 	};
 	const result = await registerNewUser(user);
 	const responseData = {
-		content: message,
+		content: user,
 	};
 	response.send(responseData);
 });
