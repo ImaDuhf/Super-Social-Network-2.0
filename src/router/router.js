@@ -1,4 +1,4 @@
-import express, { request, response } from 'express';
+import express from 'express';
 import { fetchMessages, sendMessage } from '../service/messageService.js';
 
 const router = express.Router();
