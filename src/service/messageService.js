@@ -1,8 +1,7 @@
-import { ObjectId } from 'mongodb';
-import { fetchCollection } from '../mongo/mongoClient.js';
+import { fetchCollection, fetchCollections, createCollection } from '../mongo/mongoClient.js';
 import crypto from 'crypto';
 
-export function sendMessage(messageData, username) {
+export function sendMessage(messageData, username, roomId) {
 	let date = new Date();
 	let data = {
 		user: username,
@@ -10,13 +9,21 @@ export function sendMessage(messageData, username) {
 		dateSent: date,
 		messageId: crypto.randomUUID(),
 	};
-	return fetchCollection('chatt-app').insertOne(data);
+	return fetchCollection(roomId).insertOne(data);
 }
 
-export function fetchMessages() {
-	return fetchCollection('chatt-app').find().toArray();
+export function fetchMessages(roomId) {
+	return fetchCollection(roomId).find().toArray();
 }
 
-export function deleteMessage(id) {
-	return fetchCollection('chat-app').deleteOne({ messageId: '4d3e4175-6b50-4677-9259-5640de154244' });
+export function deleteMessage(id, roomId) {
+	return fetchCollection(roomId).deleteOne({messageId: id});
+}
+
+export function fetchChattRooms() {
+	return fetchCollections();
+}
+
+export function createRoom () {
+    return createCollection(crypto.randomUUID());
 }

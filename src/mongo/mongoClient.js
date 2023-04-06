@@ -10,6 +10,14 @@ export function fetchCollection(name) {
 	return fetchDatabase().collection(name);
 }
 
+export function fetchCollections() {
+	return fetchDatabase().collections();
+}
+
+export function createCollection(name) {
+	return fetchDatabase().createCollection(name);
+}
+
 function fetchDatabase() {
 	const url = `mongodb+srv://${username}:${password}@chatt.5cp6bfx.mongodb.net/?retryWrites=true&w=majority`;
 	const client = new MongoClient(url);
