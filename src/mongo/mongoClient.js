@@ -1,7 +1,14 @@
+import * as env from 'dotenv';
+env.config();
+
+if (process.env.JWT_SIGN_KEY == undefined) {
+	console.log('[WARN] - no jwt key found, perhaps you are missing the env file?');
+}
+
 import { MongoClient } from 'mongodb';
 
 const username = 'admin';
-const password = 'YY46MQ5S1XsQNiHO';
+const password = process.env.MONGODB_PASSWORD;
 const databaseName = 'Chatt';
 
 let db = undefined;
