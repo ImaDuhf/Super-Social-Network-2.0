@@ -1,6 +1,7 @@
-import { fetchCollection, fetchCollections, createCollection } from '../mongo/mongoClient.js';
+import { fetchCollection, createCollection } from '../mongo/mongoClient.js';
 import crypto from 'crypto';
 
+// skickar meddelande
 export function sendMessage(messageData, username, roomId) {
 	let date = new Date();
 	let data = {
@@ -12,18 +13,16 @@ export function sendMessage(messageData, username, roomId) {
 	return fetchCollection(roomId).insertOne(data);
 }
 
+// hämtar alla meddelanden i en collection
 export function fetchMessages(roomId) {
 	return fetchCollection(roomId).find().toArray();
 }
 
+// tar bort ett meddelande med ett givet messageId
 export function deleteMessage(id, roomId) {
-	return fetchCollection(roomId).deleteOne({messageId: id});
+	return fetchCollection(roomId).deleteOne({ messageId: id });
 }
-
-export function fetchChattRooms() {
-	return fetchCollections();
-}
-
-export function createRoom () {
-    return createCollection(crypto.randomUUID());
+// skapar en ny collection med ett random namn
+export function createRoom() {
+	return createCollection(crypto.randomUUID());
 }
