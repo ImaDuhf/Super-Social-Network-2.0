@@ -34,7 +34,7 @@ emergencyRouter.post('/broadcast', async (request, response) => {
 
 		response.send(result);
 	} else {
-		response.status(417).send('LOG IN');
+		response.status(400).send('LOG IN');
 	}
 });
 
