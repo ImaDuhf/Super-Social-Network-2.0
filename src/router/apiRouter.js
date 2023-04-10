@@ -21,7 +21,7 @@ apiRouter.get('/channel', async (request, response) => {
 		}
 		response.send(openRooms);
 	} else {
-		response.status(417).send('Log in and try again');
+		response.status(400).send('Log in and try again');
 	}
 });
 
@@ -33,7 +33,7 @@ apiRouter.get('/channel/:id', async (request, response) => {
 		// Vi skickar bara tillbaka alla meddelanded i en collection
 		response.send(messageCollection.map((msg) => msg));
 	} else {
-		response.status(417).send('Log in and try again');
+		response.status(400).send('Log in and try again');
 	}
 });
 
@@ -61,7 +61,7 @@ apiRouter.put('/channel', async (request, response) => {
 		const roomName = await result.stats().ns.split('.')[1]; // hämtar datan om collectionen och tar ut namnet med split för att ta ut databas namnet
 		response.send(roomName);
 	} else {
-		response.status(417).send('Log in and try again');
+		response.status(400).send('Log in and try again');
 	}
 });
 
@@ -76,7 +76,7 @@ apiRouter.delete('/channel/:id', async (request, response) => {
 			response.status(400);
 		}
 	} else {
-		response.status(417).send('Log in and try again');
+		response.status(400).send('Log in and try again');
 	}
 });
 
@@ -86,7 +86,7 @@ apiRouter.delete('/channel/:id/:messageid', async (request, response) => {
 		const result = await deleteMessage(request.params.messageid, request.params.id);
 		response.send(result);
 	} else {
-		response.status(417).send('Log in and try again');
+		response.status(400).send('Log in and try again');
 	}
 });
 
